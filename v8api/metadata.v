@@ -46,10 +46,12 @@
 		24
 	  #elif ver < 8.3.9
 		22
-	  #elif ver < 8.3.11
+	  #elif ver < 8.3.11 | (ver >= 8.3.17.1989 & ver < 8.3.18)
 	    23
-	  #else
+	  #elif ver < 8.3.18.1289
 	    22
+	  #else
+	    23
 	  #endif
 		void mdTreeShow(bool show, bool activate = true)
 		bool mdTreeIsVisible()
@@ -60,10 +62,12 @@
 		28
 	  #elif ver < 8.3.9
 		26
-	  #elif ver < 8.3.11
+	  #elif ver < 8.3.11 | (ver >= 8.3.17.1989 & ver < 8.3.18)
 	    27
+	  #elif ver < 8.3.18.1289
+	    26
 	  #else
-		26
+		27
 	  #endif
 		IMDContainer@+ getMDCont()
 		+1
@@ -76,7 +80,11 @@
 		bool isModified()
 		+4
 		v8string identifier()
+	  #if ver < 8.3.18.1289
 		+3
+	  #else
+		47
+	  #endif
 		void activateObjInTree(const Guid& uuid, const Guid& propId, bool wndActivate)
 
 :iface ITypesInfoProvider {936EFFDE-1F59-4498-816F-8D495E205838}
@@ -137,15 +145,17 @@
 	    +7
 	  #elif ver < 8.3.15
 		+7
-	  #elif ver < 8.3.16
-		+7
 	  #elif ver < 8.3.18
 	    +8
 	  #else
-	    +10
+	    49
 	  #endif
 		IMDObject@+ objById(const Guid& objId)
-		+4
+	  #if ver < 8.3.18.1289
+	    +4
+	  #else
+	    54
+	  #endif
 		IMDObject@+ objByTypeId(const Guid& typeId)
 
 	  #if ver < 8.3.6
@@ -164,7 +174,12 @@
 	    59
 	  #endif
 		IConfigMngr@+ getConfigMngr()
-	  +1
+
+	  #if ver < 8.3.18.1829
+	    +1
+	  #else
+	    61
+	  #endif
 		IMDContainer@+ masterContainer()
 
 :iface IMDParentLink {6F00D0F0-4DAD-11D4-9415-008048DA11F9}
@@ -214,6 +229,10 @@
 		63
 	  #elif ver < 8.3.10
 		41
+	  #elif ver = 8.3.19.1522
+		42
+	  #elif ver > 8.3.19 
+	    45
 	  #else
 	    42
 	  #endif
@@ -248,10 +267,12 @@
 	    53
 	  #elif ver < 8.3.13 | ver = 8.3.14.1993 | ver = 8.3.14.1976 | ver = 8.3.14.1565 | ver = 8.3.14.1630
 	    54
-	  #elif ver = 8.3.16.1814
-	    63
 	  #elif ver < 8.3.15
 	    53
+	  #elif (ver >= 8.3.16.1791 & ver < 8.3.17)
+	    63
+	  #elif ver = 8.3.15.2107
+            62
 	  #elif ver < 8.3.17
 	    55
 	  #elif ver < 8.3.17.1823
@@ -260,6 +281,8 @@
 	    64
 	  #elif ver < 8.3.18.1201
 	    57
+	  #elif ver = 8.3.19.1399 | ver = 8.3.19.1417 | ver = 8.3.19.1467 | ver = 8.3.19.1522
+	    68
 	  #else
 	    65
 	  #endif
